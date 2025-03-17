@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { ReactComponent as LogoIcon } from "./assets/LogoIcon.svg";
+import { ReactComponent as LogoTitle } from "./assets/LogoTitle.svg";
+import { ReactComponent as MenuIcon } from "./assets/MenuIcon.svg";
+import './App.sass';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header className="header">
+        <div className="logo">
+          <div className="icon"><LogoIcon /></div>
+          <div className="title"><LogoTitle /></div>
+        </div>
+        <div className="menu">
+          <div className="icon"><MenuIcon /></div>
+        </div>
       </header>
+      <main>
+
+      </main>
+      <footer>
+
+      </footer>
     </div>
   );
 }

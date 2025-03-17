@@ -1,0 +1,107 @@
+/* Define variables for breakpoints */
+$breakpoint-xs: 360px   // Mobile
+$breakpoint-sm: 768px   // Tablet
+$breakpoint-md: 1248px  // Desktop
+$background-main: #304571
+$background-header: #000000
+
+*
+    box-sizing: border-box
+
+body 
+  font-family: Lato
+  margin: 0
+  padding: 0
+  background-color: $background-main
+
+.container 
+  max-width: 100%
+  padding: 20px
+  margin: 0 auto
+
+.header
+  width: 100%
+  height: 48px
+
+  display: flex
+  flex-direction: row
+  align-items: center
+  justify-content: space-between
+
+  padding: 12px 20px
+
+  background-color: $background-header
+
+  > div
+    height: 100%
+
+  .logo
+    display: flex
+    flex-direction: row
+    align-items: center
+    gap: 4px
+
+    .icon
+        $icon-size: 27px
+        
+        &, svg
+            height: $icon-size
+            width: $icon-size
+
+    .title
+        &, svg
+            height: 18px
+            width: 44px
+
+  .menu
+    display: flex
+    align-items: center
+
+    .icon
+        $icon-size: 30px
+
+        &, svg
+            height: $icon-size
+            width: $icon-size
+
+
+/* Tablet styles */
+@media (min-width: $breakpoint-sm) 
+  
+
+  .card 
+    display: inline-block
+    width: 48%
+    margin-right: 4%
+    margin-bottom: 20px
+  
+
+  /* Adjust text sizes */
+  h1 
+    font-size: 2.5rem
+  
+
+
+/* Desktop styles */
+@media (min-width: $breakpoint-md) 
+  .container 
+    width: 80%
+  
+
+  .header 
+    text-align: left
+    padding: 30px
+  
+
+  .card 
+    display: inline-block
+    width: 30%
+    margin-right: 3%
+    margin-bottom: 20px
+  
+
+  /* Adjust text sizes */
+  h1 
+    font-size: 3rem
+  
+
