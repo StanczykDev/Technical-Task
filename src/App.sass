@@ -2,22 +2,55 @@
 $breakpoint-xs: 360px   // Mobile
 $breakpoint-sm: 768px   // Tablet
 $breakpoint-md: 1248px  // Desktop
+
 $background-main: #304571
-$background-header: #000000
+$background-black: #000000
+$text-color-main: #FFFFFF
+$color-accent: #FF70D9
+$color-attention: #EBFF00
 
 *
-    box-sizing: border-box
+  box-sizing: border-box
+  margin: 0
+  padding: 0
+
+button
+  background: none
+  border: none
+  cursor: pointer
 
 body 
   font-family: Lato
   margin: 0
   padding: 0
   background-color: $background-main
+  color: $text-color-main
 
 .container 
   max-width: 100%
   padding: 20px
   margin: 0 auto
+
+.infoButton
+  background-color: $color-attention
+
+  &--outlined
+    color: $color-attention
+
+    background: none
+    border: 2px solid $color-attention
+
+  width: 161px
+  height: 33px
+
+  border-radius: 15px
+
+  font-size: 16px
+  font-weight: 400
+
+  &:hover
+    transition: opacity 0.2s ease
+    opacity: 0.6
 
 .header
   width: 100%
@@ -30,7 +63,7 @@ body
 
   padding: 12px 20px
 
-  background-color: $background-header
+  background-color: $background-black
 
   > div
     height: 100%
@@ -58,12 +91,139 @@ body
     align-items: center
 
     .icon
-        $icon-size: 30px
+        $icon-size: 32px
 
         &, svg
             height: $icon-size
             width: $icon-size
 
+.main
+  display: flex
+  flex-direction: column
+  gap: 50px
+
+  padding-bottom: 50px
+
+  .banner
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: flex-end
+    gap: 17px
+    text-align: center
+
+    height: 451px
+    padding-bottom: 44px
+
+    background: url('./assets/earth.png'), linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(15, 20, 32, 0.79) 100%), url('./assets/space1.jpg'),
+    background-size: 336px, cover, cover
+    background-position: left 20px top -120px, center, right -150px bottom
+    background-repeat: no-repeat, no-repeat, no-repeat
+
+    .promoTitle
+      font-size: 36px
+      font-weight: 900
+
+      line-height: 100%
+      
+      .accent
+        color: $color-accent
+
+    .promoSubTitle
+      font-size: 16px
+
+      line-height: 120%
+
+      .attention
+        color: $color-attention
+
+  .offers
+    display: flex
+    flex-direction: column
+    gap: 30px
+
+    padding: 0 20px
+
+    .offersSubTitle
+      font-size: 18px
+      font-weight: 900
+
+    .offersCard
+      width: 320px
+      height: 350px
+
+      padding: 27px 32px
+
+      display: flex
+      flex-direction: column
+      justify-content: flex-end
+      gap: 22px
+
+      @for $i from 1 through 4
+        &:nth-of-type(#{$i})
+          background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(15, 20, 32, 0.79) 100%), url('./assets/space_small_#{$i}.jpg')
+
+      background-position: center
+      background-size: cover
+      background-repeat: no-repeat
+
+      > *
+        max-width: 184px
+
+      border-radius: 15px
+
+      .cardTitle
+        font-size: 40px
+        line-height: 100%
+
+      .cardSubTitle
+        font-size: 16px
+        line-height: 120%
+
+  .description
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    gap: 20px
+
+    padding: 0 20px
+
+    .descriptionSubTitle
+      font-size: 18px
+      font-weight: 900
+    
+    .descriptionText
+      font-size: 14px
+      line-height: 100%
+
+      opacity: 0.6
+
+    .descriptionInfoButton
+      font-size: 14px
+      font-weight: 800
+
+      color: $color-attention
+
+.footer
+  height: 127px
+
+  display: flex
+  flex-direction: column
+  justify-content: flex-end
+
+  background: url('./assets/rocket.png'), $background-black
+  background-position: center top
+  background-repeat: no-repeat
+  background-size: 120px
+
+  text-align: center
+
+  padding: 19px 0
+
+  .footerTitle
+    font-size: 18px
+    font-weight: 900
+    color: $color-attention
 
 /* Tablet styles */
 @media (min-width: $breakpoint-sm) 
