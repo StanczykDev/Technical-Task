@@ -9,6 +9,10 @@ $text-color-main: #FFFFFF
 $color-accent: #FF70D9
 $color-attention: #EBFF00
 
+@font-face 
+  font-family: 'IconFont'
+  src: url('assets/IconFont.ttf') format('truetype')
+
 *
   box-sizing: border-box
   margin: 0
@@ -86,16 +90,70 @@ body
             height: 18px
             width: 44px
 
-  .menu
+  .menuButton
     display: flex
     align-items: center
 
-    .icon
+    .iconMenu
         $icon-size: 32px
+
+        margin-right: -5px
 
         &, svg
             height: $icon-size
             width: $icon-size
+
+    .iconClose
+        $icon-size: 21px
+
+        &, svg
+            height: $icon-size
+            width: $icon-size
+
+  .menuList
+    display: none
+
+    &.opened
+      display: block
+
+    position: absolute
+    right: 0
+    top: 48px
+
+    width: 100%
+
+    .menuItem
+      display: flex
+      justify-content: flex-end
+      align-items: center
+      padding: 0 20px
+
+      height: 24px
+
+      background-color: $background-black
+
+      .menuItemButton
+        color: $text-color-main
+        text-align: center
+
+        .wheelCartIcon
+          font-family: IconFont
+
+        .wheelCartIcon:before 
+          content: "\e900"
+        
+        &:hover
+
+          background-image: linear-gradient(98.25deg, #EBFF00 18.56%, #FF70D9 76.02%)
+          color: transparent
+          background-clip: text
+
+
+        svg
+          $icon-size: 20px
+
+          width: $icon-size
+          height: $icon-size
 
 .main
   display: flex
@@ -117,7 +175,7 @@ body
 
     background: url('./assets/earth.png'), linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(15, 20, 32, 0.79) 100%), url('./assets/space1.jpg'),
     background-size: 336px, cover, cover
-    background-position: left 20px top -120px, center, right -150px bottom
+    background-position: left 20px top -120px, center, right 30% bottom
     background-repeat: no-repeat, no-repeat, no-repeat
 
     .promoTitle
@@ -148,37 +206,41 @@ body
       font-size: 18px
       font-weight: 900
 
-    .offersCard
-      width: 320px
-      height: 350px
-
-      padding: 27px 32px
-
+    .offersCards
       display: flex
       flex-direction: column
-      justify-content: flex-end
-      gap: 22px
+      gap: 30px
 
-      @for $i from 1 through 4
-        &:nth-of-type(#{$i})
-          background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(15, 20, 32, 0.79) 100%), url('./assets/space_small_#{$i}.jpg')
+      .offersCard
+        height: 350px
 
-      background-position: center
-      background-size: cover
-      background-repeat: no-repeat
+        padding: 27px 32px
 
-      > *
-        max-width: 184px
+        display: flex
+        flex-direction: column
+        justify-content: flex-end
+        gap: 22px
 
-      border-radius: 15px
+        @for $i from 1 through 4
+          &:nth-of-type(#{$i})
+            background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(15, 20, 32, 0.79) 100%), url('./assets/space_small_#{$i}.jpg')
 
-      .cardTitle
-        font-size: 40px
-        line-height: 100%
+        background-position: center
+        background-size: cover
+        background-repeat: no-repeat
 
-      .cardSubTitle
-        font-size: 16px
-        line-height: 120%
+        > *
+          max-width: 184px
+
+        border-radius: 15px
+
+        .cardTitle
+          font-size: 40px
+          line-height: 100%
+
+        .cardSubTitle
+          font-size: 16px
+          line-height: 120%
 
   .description
     display: flex
@@ -192,17 +254,30 @@ body
       font-size: 18px
       font-weight: 900
     
-    .descriptionText
+    .descriptionText, .hiddenContent
       font-size: 14px
       line-height: 100%
 
       opacity: 0.6
+    
+    .hiddenContent
+      display: none
+
+    .descriptionInfoButtonContainer
+      cursor: pointer
 
     .descriptionInfoButton
       font-size: 14px
       font-weight: 800
 
       color: $color-attention
+
+    &:focus-within
+      .hiddenContent
+        display: block
+
+      .descriptionInfoButton
+        pointer-events: none
 
 .footer
   height: 127px
@@ -225,43 +300,173 @@ body
     font-weight: 900
     color: $color-attention
 
-/* Tablet styles */
-@media (min-width: $breakpoint-sm) 
+@media (min-width: $breakpoint-sm)
+  .header
+    height: 80px
+    padding: 32px 50px
+
+    .menuButton
+      display: none
+
+    .menuList
+      position: static
+
+      display: flex
+      flex-direction: row
+      justify-content: flex-end
+
+      .menuItem
+        .menuItemButton
+          font-size: 18px
+
+  .main
+    .banner
+      background-position: right -100px center, center, right bottom
+
+      gap: 22px
+      justify-content: center
+      align-items: flex-start
+
+      padding: 0 30px
+
+      .promoTitle, .promoSubTitle
+        width: 411px
+
+        text-align: start
+
+      .promoTitle
+        font-size: 48px
+
+      .promoSubTitle
+        font-size: 22px
+
+      .infoButton
+        width: 191px
+        height: 54px
+
+        font-size: 22px
+
+        border-radius: 30px
+
+    .offers
+      .offersSubTitle
+        font-size: 24px
+
+      .offersCards
+        flex-direction: row
+        flex-wrap: wrap
+
+        .offersCard
+          width: calc((100% - 30px) / 2)
+
+          .cardTitle, .cardSubTitle
+            max-width: 212px
+
+    .description
+      .descriptionSubTitle
+        font-size: 24px
+
+      .descriptionText
+        font-size: 16px
+  
+      .descriptionInfoButton
+        font-size: 16px
+
   
 
-  .card 
-    display: inline-block
-    width: 48%
-    margin-right: 4%
-    margin-bottom: 20px
-  
-
-  /* Adjust text sizes */
-  h1 
-    font-size: 2.5rem
-  
-
-
-/* Desktop styles */
 @media (min-width: $breakpoint-md) 
-  .container 
-    width: 80%
-  
+  .header
+    padding: 24px 82px
+    
+    .logo
+      .icon
+        $icon-size: 35px
 
-  .header 
-    text-align: left
-    padding: 30px
-  
+        &, svg
+          height: $icon-size
+          width: $icon-size
 
-  .card 
-    display: inline-block
-    width: 30%
-    margin-right: 3%
-    margin-bottom: 20px
-  
+      .title
 
-  /* Adjust text sizes */
-  h1 
-    font-size: 3rem
-  
+        &, svg
+          height: 25px
+          width: 63px
 
+
+  .main
+    .banner
+      background-position: right 50px center, center, right bottom
+
+      padding: 0 81px
+
+      .promoTitle, .promoSubTitle
+        width: 693px
+
+      .promoTitle
+        font-size: 72px
+
+      .promoSubTitle
+        font-size: 32px
+
+    .offers
+      .offersSubTitle
+        font-size: 32px
+
+      .offersCards
+        display: grid
+        grid-template-columns: 1fr 1fr
+        grid-template-rows: auto auto auto
+        gap: 30px
+
+        .offersCard
+          width: 100%
+
+          justify-content: center
+
+          .cardTitle, .cardSubTitle
+            max-width: 280px
+
+          .cardTitle
+            font-size: 46px
+          
+          .cardSubTitle
+            font-size: 24px
+
+          &:first-child, &:last-child
+            grid-column: 1 / 3
+
+            .cardTitle
+              font-size: 74px
+
+            .cardSubTitle
+              font-size: 26px
+
+            .cardTitle, .cardSubTitle
+              max-width: 779px
+
+          
+          &:nth-child(2)
+            grid-column: 1 / 2
+          
+          &:nth-child(3)
+            grid-column: 2 / 3
+
+          .infoButton
+            height: 54px
+            width: 191px
+
+            border-radius: 40px
+
+            font-size: 22px
+
+    .description
+      .descriptionSubTitle
+        font-size: 32px
+
+      .descriptionText
+        font-size: 20px
+  
+      .descriptionInfoButton
+        font-size: 20px
+
+    
